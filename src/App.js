@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Global, css} from '@emotion/core'
+import { Login } from './pages/Login'
+import lucidaGrande from './fonts/lucida-grande.woff';
 
-function App() {
+const globalStyles = css`
+  @font-face {
+    font-family: 'Lucida Grande';
+    src: url('${lucidaGrande}') format("woff");
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Lucida Grande';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background-image: linear-gradient(
+      to bottom, 
+      #fff 0%, 
+      #fff 50%, 
+      #37b 50%, 
+      #37b 100%
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+`
+
+// App LeadForm
+const App = ({className}) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Global styles={globalStyles} />
+      <Login/>
     </div>
-  );
+  )
 }
 
 export default App;
+
