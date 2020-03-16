@@ -20,8 +20,8 @@ const loginBase = css`
 function loginRaw(props) {
   const handleSubmit = async ({ username, password}) => {
     try {
-      const response = await axios.post('https://glacial-shelf-31721.herokuapp.com/login', { username, password })
-
+      const response = await axios.post('https://glacial-shelf-31721.herokuapp.com/auth/login', { username, password })
+      
       console.log(response);      
     } catch(e) {
       console.log(e)
