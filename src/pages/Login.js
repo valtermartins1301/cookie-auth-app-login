@@ -2,6 +2,8 @@ import React from 'react'
 import styled from '@emotion/styled'
 import {css} from '@emotion/core'
 import axios from 'axios'
+import { navigate } from "@reach/router"
+
 import { Form } from "../components/Form"
 import { Heading } from "../components/Heading"
 import {Subheading} from "../components/Subheading"
@@ -17,14 +19,16 @@ const loginBase = css`
   }s
 `
 
-function loginRaw(props) {
+function LoginRaw(props) {
+  const [error, setError] = React.useState()
+
   const handleSubmit = async ({ username, password}) => {
     try {
-      const response = await axios.post('https://glacial-shelf-31721.herokuapp.com/auth/login', { username, password })
-      
-      console.log(response);      
+      await axios.post('https://glacial-shelf-31721.herokuapp.com/auth/login', { username, password })
+
+      navigate('https://cookie-auth-app-logged.netlify.com');      
     } catch(e) {
-      console.log(e)
+      setError(e.message)
     }
   }
 
@@ -38,13 +42,14 @@ function loginRaw(props) {
           <InputGroup label="Usuário" type="text" name="username"/>
           <InputGroup label="Senha" type="password" name="password"/>
         </section>
+        <p>{error}</p>
         <Input type="submit" value="Continuar"/>
       </Form>
     </div>
   )
 }
 
-const Login = styled(loginRaw)`
+const Login = styled(LoginRaw)`
   ${loginBase}
 `
 

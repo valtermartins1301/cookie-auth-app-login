@@ -1,5 +1,7 @@
 import React from 'react';
 import {Global, css} from '@emotion/core'
+import { Router } from "@reach/router";
+
 import { Login } from './pages/Login'
 import lucidaGrande from './fonts/lucida-grande.woff';
 
@@ -34,7 +36,9 @@ const App = ({className}) => {
   return (
     <div>
       <Global styles={globalStyles} />
-      <Login/>
+      <Router>
+        <Login path="/login" default/>
+      </Router>
     </div>
   )
 }
